@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 	setBackgroundHDimensions();
 	activateScrollToAnimation();
+	initializeAjaxForm();
 
 	$("a.mainNavEl").on('click', function(event) {
 		if($(window).width() < 814){
@@ -72,6 +73,30 @@ function toggleMenu(toggleNavigation){
 	
 }
 
+
+function initializeAjaxForm(){
+
+$("#contactForm").submit(function(event) {
+
+      /* stop form from submitting normally */
+      event.preventDefault();
+
+      /* get the action attribute from the <form action=""> element */
+      var $form = $( this ),
+          url = $form.attr( 'action' );
+
+      /* Send the data using post */
+      var posting = $.post( url, { Name: $('#contactName').val(), Email: $('#contactEmail').val() , Message: $('#contactMessage').val() } );
+
+      /* Alerts the results */
+      posting.done(function( data ) {
+      	$("#successMessage").addClass("fadeIn");
+      	$("#contactSubmit").css("display","none");
+      });
+    });
+}
+
+
 /*
 *
 * Scroll Actions (not for Privacy Policy Page)
@@ -83,9 +108,11 @@ $(window).scroll(function (event) {
 	if (!$("body").hasClass("privacyPolicy")){
 
 		  var scroll = $(window).scrollTop();
+		  var heightIntro = $('#intro').offset().top;
 		  var heightSkills = $('#skills').offset().top;
 		  var heightWorks = $('#works').offset().top;
-		  //var heightContact = $('#contact').offset().top;
+		  var heightContact = $('#contact').offset().top;
+
 		  if (scroll <  heightSkills) {
 		    $(".mainNavEl").removeClass("active");
 		  }  
@@ -97,14 +124,13 @@ $(window).scroll(function (event) {
 		    $(".mainNavEl").removeClass("active");
 		    $("#worksAnchor").addClass("active");
 		  }  
-		  /*
 		  if (scroll >=  heightContact-3) {
 		    $(".mainNavEl").removeClass("active");
-		    $("#comtactAnchor").addClass("active");
-		  } 
-		*/
+		    $("#contactAnchor").addClass("active");
+		  }  
+
 		/* Fade In or Out - Header  */
-		if (scroll >  300) {
+		if (scroll >  120) {
 			$("header").addClass("fadeIn"); 
 			$("header").removeClass("fadeOut"); 
 
@@ -112,8 +138,16 @@ $(window).scroll(function (event) {
 		else if(scroll <= 300 && $("header").hasClass("fadeIn")) {
 			$("header").removeClass("fadeIn"); 
 			$("header").addClass("fadeOut"); 
-
-
 		}
+	}
+
+	/* Fade In or Out - Header  */
+	if (scroll >  heightIntro-100) {
+		$("header").css("fadeIn"); 
+
+	}
+	else if(scroll <= heightIntro-100 && $("header").hasClass("fadeIn")) {
+		$("header").removeClass("fadeIn"); 
+		$("header").addClass("fadeOut"); 
 	}
 });
