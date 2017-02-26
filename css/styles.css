@@ -41,50 +41,80 @@ a:link, a:hover {
 }
 
 /* Header Part */
-
 header{
 	width: 100%;
     height: 5em;
     position: fixed;
 	top: 0;
 	left: 0;
-	background-color: rgb(253,253,253);
 	z-index:2000;
 	padding: 1em 1em;
+	background-color: rgb(253,253,253);
 	border-bottom: 1px solid #005858;
 }
+
+header{
+		background-color: transparent;
+		border-bottom: 0;
+	}
+		header.fadeOut{
+			background-color: transparent;
+			border-bottom: 0;
+    		animation-name: headerFadeOut;
+    		animation-duration: 1s;
+		}
+
+		header.fadeIn{
+			background-color: rgb(253,253,253);
+			border-bottom: 1px solid #005858;
+		    animation-name: headerFadeIn;
+		    animation-duration: 1s;
+		}
+
+
+		/* CSS ANIMATION For header*/
+		@keyframes headerFadeIn {
+		    from {background-color: transparent;}
+		    to {background-color: rgb(253,253,253);}
+		}
+
+		/* CSS ANIMATION For header*/
+		@keyframes headerFadeOut {
+		    from {background-color: rgb(253,253,253);}
+		    to {background-color: transparent;}
+		}
+
+		header div.name {
+	    	margin-left: 1.5em;
+			display:none;
+		}
+
+		header.fadeOut div.name {
+			display:none;
+		}
+
+		header div#logo,
+		header.fadeOut div#logo{
+			float:left;
+			display: block;
+			background: url(../images/logo_white.svg) no-repeat, linear-gradient(transparent, transparent);
+			background-size: contain;
+		    background-position: center;
+		    width: 6em;
+		    height: 3em;
+		}
+
+		header.fadeIn div#logo{
+			background: url(../images/logo.svg) no-repeat, linear-gradient(transparent, transparent);
+		}
 	
 	h1 {
 	    font-size: 1.5em;
 	}
-
 	header a#brand {
 		text-decoration: none;
 	    height: 3em;
     	display: inline-block;
-	}
-
-	header div#logo{
-		float:left;
-		display: block;
-		background: url(../images/logo.svg) no-repeat, linear-gradient(transparent, transparent);
-	    background-size: contain;
-	    background-position: center;
-	    width: 6em;
-	    height: 3em;
-	}
-
-	header div.name {
-		float:left;
-		display: block;
-	    color: #5a7077;
-	    font-family: "Roboto", Arial, Helvetica, sans-serif;
-	    font-weight: 400;
-	    font-size: 1.5em;
-    	margin-left: 1em;
-    	margin-top: 0.4em;
-		text-transform: uppercase;
-		text-decoration: none;
 	}
 
 /*Navigation Part*/
@@ -119,7 +149,7 @@ header{
 	}
 
 	.c-hamburger:focus {
-	    outline: 0
+	    outline: 0;
 	}
 
 	.c-hamburger span {
@@ -129,7 +159,7 @@ header{
 	    left: 0px;
 	    right: 0px;
 	    height: 3px;
-	    background-color: #0C9A8A;
+	    background-color: #1de0b9;
 	}
 
 	.c-hamburger span::after,
@@ -139,23 +169,23 @@ header{
 	    left: 0;
 	    width: 100%;
 	    height: 3px;
-	    background-color: #0C9A8A;
-	    content: ""
+	    background-color: #1de0b9;
+	    content: "";
 	}
 
 	.c-hamburger--htla.is-active span::after,
 	.c-hamburger--htla.is-active span::before,
 	.c-hamburger--htra.is-active span::after,
 	.c-hamburger--htra.is-active span::before {
-	    width: 50%
+	    width: 50%;
 	}
 
 	.c-hamburger span::before {
-	    top: -12px
+	    top: -12px;
 	}
 	
 	.c-hamburger span::after {
-	    bottom: -12px
+	    bottom: -12px;
 	}
 
 	.c-hamburger--htx {
@@ -164,7 +194,7 @@ header{
 
 	.c-hamburger--htx span {
 	    -webkit-transition: background 0s .3s;
-	    transition: background 0s .3s
+	    transition: background 0s .3s;
 	}
 
 	.c-hamburger--htx span::after,
@@ -172,38 +202,37 @@ header{
 	    -webkit-transition-duration: .3s, .3s;
 	    transition-duration: .3s, .3s;
 	    -webkit-transition-delay: .3s, 0s;
-	    transition-delay: .3s, 0s
+	    transition-delay: .3s, 0s;
 	}
 
 	.c-hamburger--htx span::before {
 	    -webkit-transition-property: top, -webkit-transform;
-	    transition-property: top, transform
+	    transition-property: top, transform;
 	}
 
 	.c-hamburger--htx span::after {
 	    -webkit-transition-property: bottom, -webkit-transform;
-	    transition-property: bottom, transform
-	}
-
-	.c-hamburger--htx.is-active {
+	    transition-property: bottom, transform;
 	}
 
 	.c-hamburger--htx.is-active span {
-	    background: 0 0
+	    background: none;
 	}
 
 	.c-hamburger--htx.is-active span::before {
 	    top: 0;
 	    -webkit-transform: rotate(45deg);
 	    -ms-transform: rotate(45deg);
-	    transform: rotate(45deg)
+	    transform: rotate(45deg);
+	    background-color: #0C9A8A;
 	}
 
 	.c-hamburger--htx.is-active span::after {
 	    bottom: 0;
 	    -webkit-transform: rotate(-45deg);
 	    -ms-transform: rotate(-45deg);
-	    transform: rotate(-45deg)
+	    transform: rotate(-45deg);
+	    background-color: #0C9A8A;
 	}
 
 	.c-hamburger--htx.is-active span::after,
@@ -213,6 +242,7 @@ header{
 	}
 
 	ul.simple-toggle { 
+    	margin-top: 0;
 		display: none;
 	    list-style: none;
 	    text-align: center;
@@ -267,7 +297,7 @@ header{
 	#backgroundIntroFullScreen #intro{
 	    position: absolute;
 	    left: 50%;
-	    top: 45%;
+	    top: 55%;
 	    width: 71%;
 	    height: auto;
 	    margin: 0 auto;
@@ -282,11 +312,14 @@ header{
 
 		#backgroundIntroFullScreen h2{
 		    position: relative;
-		    font-size: 4.3em;
+		    top: 0.2em;
 		    color: rgb(253,253,253);
 		    line-height: 1.55;
 		    font-weight: 300;
-		    letter-spacing: 1.8px;
+		    /*font-size: 4.3em;*/
+    		font-size: 2.7em;
+		    /*letter-spacing: 1.8px;*/
+		    letter-spacing: 1px;
 		    font-style: normal;
 		    font-family: "Roboto";
 		    text-rendering: optimizeLegibility;
@@ -297,7 +330,8 @@ header{
 
 		#backgroundIntroFullScreen div.text{
 			position: relative;
-		    font-size: 1.8em;
+		    /*font-size: 1.8em;*/
+		    font-size: 1.4em;
 		    color: #1de0b9;
 		    line-height: 1.55;
 		    font-weight: 300;
@@ -369,13 +403,15 @@ body section {
 	    -webkit-font-smoothing: antialiased;
 	    font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	    line-height: 1;
+    	margin-top: 0.5em;
 	}
 
 
 
 	body section p {
     	font-size: 1.5em;
-        -webkit-font-smoothing: antialiased;
+	    text-rendering: optimizeLegibility;
+	    -webkit-font-smoothing: antialiased;
 	}
 
 	body section a{
@@ -387,15 +423,117 @@ body section {
 	    float: left;
 		position: relative;
     	padding: 3em;
-	    width: 98%;
-	    margin: 1% 1%;
+	    width: 100%;
+	    margin: 0.5em 0;
     	border: 2px solid rgb(232,232,232);
+    	-o-transition:.5s;
+		  -ms-transition:.5s;
+		  -moz-transition:.5s;
+		  -webkit-transition:.5s;
+		  /* ...and now for the proper property */
+		  transition:.5s;
+	}
+
+	body section .skillEntry:hover{
+    	background-color: #0C9A8A;
+    	border: 2px solid #0C9A8A;
+	}
+
+	body section .skillEntry:hover h4{
+    	color: rgb(253, 253, 253);
+	}
+	body section .skillEntry:hover h4{
+    	color: rgb(253, 253, 253);
 	}
 
 
+	body section .workEntry{
+		width: 100%;
+	}
+		body section .workEntry a{
+			display: block;
+    		margin-top: 1em;
+		}
+		body section .workEntry .image{
+			width: 100%;
+    		height: 20em;
+			overflow:hidden;
+		}
+			body section .workEntry .image img{
+				width: 100%;
+			}
 
 
+/*Contact form*/
 
+input, textarea{
+    position: relative;
+    line-height: 1.2;
+    font-weight: 300;
+    font-size: 1.6em;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: #0C9A8A;
+    z-index: 2;
+    width: 100%;
+	border: 1px solid #5a7077;
+    outline: none;
+    margin: 0 0 5% 0;
+    padding: 20px;
+    background-color: transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    resize: none;
+}
+
+input:focus, textarea:focus {
+	border: 1px solid #1de0b9;
+}
+
+input[type="submit"] {
+	float: right;
+	padding: 0.4em;
+    width: auto;
+	border: none;
+	cursor:pointer;
+	background-color:#5a7077;
+	color: rgb(253, 253, 253);
+	border-radius: 0.2em;
+    -moz-transition: all .35s;
+    -o-transition: all .35s;
+    -ms-transition: all .35s;
+    -webkit-transition: all .35s;
+    transition: all .35s;
+    transition-property: initial;
+    transition-duration: 0.35s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+}
+
+#successMessage {
+	display:none;
+	width: 100%;
+    z-index: 20;
+    position: relative;
+    bottom: 1em;
+    padding: 1em;
+    background: #0C9A8A;
+    border-radius: 0.5em;
+    font-size: 1.5em;
+    opacity: 0;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -ms-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 2s ease-in-out;
+}
+
+#successMessage.fadeIn {
+	display:block;
+    opacity: 0.7;
+}
 
 /* Outro Part */
 
@@ -423,6 +561,7 @@ footer {
     position: relative;
     background: rgb(8,12,19);
     color: #5a7077;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     padding: 3em 1em 5em 1em;
 }
@@ -464,7 +603,6 @@ footer {
 	    margin-right: 0;
 	}
 
-
 /*
 *
 *	big Mobile
@@ -473,6 +611,8 @@ footer {
 
 
 @media only screen and (min-width: 560px) {
+
+
 		#backgroundIntroFullScreen {
 			background-image: linear-gradient(to bottom right, rgba(0,88,88,.9), rgba(0,88,88,.4)), url(../images/backgrounds/bg_image1_middle.jpg);
 		    background: -webkit-linear-gradient(left top, rgba(0,88,88,.9), rgba(0,88,88,.4)), url(../images/backgrounds/bg_image1_middle.jpg);
@@ -489,6 +629,17 @@ footer {
 		    background: linear-gradient(to bottom right, rgba(8,12,19,0.9), rgba(0,0,0,.7)), url(../images/backgrounds/bg_image2_middle.jpg);
 
 		}
+
+		#contactName,
+		#contactEmail {
+			float: left;
+			width: 47%;
+		}
+
+		#contactName{
+			margin-right: 6%;
+		}
+
 }
 
 /*
@@ -497,6 +648,26 @@ footer {
 *
 */
 @media only screen and (min-width: 600px) {
+
+
+	header div.name {
+		float:left;
+		display: block;
+		color: rgb(253,253,253);
+	    font-family: "Roboto", Arial, Helvetica, sans-serif;
+	    font-weight: 400;
+	    font-size: 1.5em;
+    	margin-left: 1em;
+    	margin-top: 0.4em;
+		text-transform: uppercase;
+		text-decoration: none;
+	}
+
+	header.fadeIn div.name {
+		color: #5a7077;
+	}
+
+
 		#backgroundIntroFullScreen {
 			background-image: linear-gradient(to bottom right, rgba(0,88,88,.9), rgba(0,88,88,.4)), url(../images/backgrounds/bg_image1_middle.jpg);
 		    background: -webkit-linear-gradient(left top, rgba(0,88,88,.9), rgba(0,88,88,.4)), url(../images/backgrounds/bg_image1_middle.jpg);
@@ -513,6 +684,19 @@ footer {
 		    background: linear-gradient(to bottom right, rgba(8,12,19,0.9), rgba(0,0,0,.7)), url(../images/backgrounds/bg_image2_middle.jpg);
 
 		}
+
+			body section .workEntry .image{
+	    		height: 40em;
+			}
+
+			#backgroundIntroFullScreen h2{
+			    font-size: 4.3em;
+			    letter-spacing: 1.8px;
+			}
+
+			#backgroundIntroFullScreen div.text{
+			    font-size: 1.8em;
+			}
 }
 
 /*
@@ -539,8 +723,40 @@ footer {
 	    background: linear-gradient(to bottom right, rgba(8,12,19,0.9), rgba(0,0,0,.7)), url(../images/backgrounds/bg_image2_big.jpg);
 
 	}
-
 }
+
+@media only screen and (min-width: 768px) {
+	
+	body section .skillEntry{
+		margin-right: 0;
+		width: 47%;
+	    float: left;
+	    height: 33em;
+	}	
+
+	body section .skillEntry:nth-child(2n){
+	    margin-right: 6%;
+	}	
+
+	body section .workEntry {
+		padding: 3em 0;
+	}
+
+
+	body section .workEntry .image{
+		width: 47%;
+	    margin-right: 6%;
+	    float: left;
+	    height: 26em;
+	}
+
+	body section .workEntry .description{
+		float: right;
+	    width: 47%;
+	    text-align: left;
+	}
+}
+
 /*
 *
 *	 Small Tablet
@@ -550,9 +766,11 @@ footer {
 	header{
 		padding: 1em 10em;
 	}
-		header div.name {
-	    	margin-left: 1.5em;
-		}
+
+	header.fadeIn div.name {
+		display: block;
+		color: #5a7077;
+	}
 
 	ul.simple-toggle {
 	    position: relative;
@@ -567,7 +785,7 @@ footer {
 		    display: inline;
 	    	float: left;
 		}
-		
+
 		ul.simple-toggle li a { 
     		margin-bottom: 0em;
     		font-size: 1.6em;
@@ -580,12 +798,17 @@ footer {
 		    transition-duration: 0.35s;
 		    transition-timing-function: initial;
 		    transition-delay: initial;
+		    color: rgb(253,253,253);
+		}
+
+		header.fadeIn ul.simple-toggle li a { 
+		    color: #5a7077;
 		}
 
 		ul.simple-toggle li a.active,
 		ul.simple-toggle li a:hover {
 		    transition: width .5s ease, color .5s ease;
-		    color: #5a7077;
+		    color: rgb(253,253,253);
 		}
 
 		ul.simple-toggle li a:after {
@@ -612,14 +835,11 @@ footer {
 		padding: 5em 10em;
 	}
 
-		body section .skillEntry{
-			height: 21em;
-		}
-
 	footer {
 	    position: relative;
 	    background: rgb(8,12,19);
 	    color: #5a7077;
+	    text-rendering: optimizeLegibility;
 	    -webkit-font-smoothing: antialiased;
 	    padding: 3em 10em 5em 10em;
 	}
@@ -641,9 +861,6 @@ footer {
 		.c-hamburger--htx {
 			display:none;
 		}
-
-
-
 }
 
 /*
@@ -661,7 +878,6 @@ footer {
 	    background: linear-gradient(to bottom right, rgba(0,88,88,.9), rgba(0,88,88,.4)), url(../images/backgrounds/bg_image1_big.jpg);
 	}
 
-
 	#backgroundOutro{
 		background-image: linear-gradient(to bottom right, rgba(8,12,19,0.9), rgba(0,0,0,.7)), url(../images/backgrounds/bg_image2_big.jpg);
 	    background: -webkit-linear-gradient(left top, rgba(8,12,19,0.9), rgba(0,0,0,.7)), url(../images/backgrounds/bg_image2_big.jpg);
@@ -669,6 +885,20 @@ footer {
 	    background: -moz-linear-gradient(bottom right, rgba(8,12,19,0.9), rgba(0,0,0,.7)), url(../images/backgrounds/bg_image2_big.jpg);
 	    background: linear-gradient(to bottom right, rgba(8,12,19,0.9), rgba(0,0,0,.7)), url(../images/backgrounds/bg_image2_big.jpg);
 
+	}
+}
+
+/*
+*
+*	Big Desktop
+*
+*/
+@media only screen and (min-width: 1280px) {
+	body section .workEntry .image{
+		width: 47%;
+	    margin-right: 6%;
+	    float: left;
+	    height: 41em;
 	}
 }
 
